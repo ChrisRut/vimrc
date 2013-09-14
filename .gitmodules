@@ -7,3 +7,9 @@
 [submodule "sources_non_forked/vim-puppet"]
 	path = sources_non_forked/vim-puppet
 	url = git://github.com/rodjek/vim-puppet.git
+[submodule "sources_non_forked/vim-monokai"]
+	path = sources_non_forked/vim-monokai
+	url = https://github.com/sickill/vim-monokai.git
+[submodule "sources_non_forked/vim-dockerfile"]
+	path = sources_non_forked/vim-dockerfile
+	url = https://github.com/ekalinin/Dockerfile.vim.git
