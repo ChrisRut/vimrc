@@ -1,5 +1,5 @@
 " Change Default Color
-color desert
+color Monokai
 
 " Change tab length from 4 to 2
 set tabstop=2
