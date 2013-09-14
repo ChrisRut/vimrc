@@ -50,6 +50,49 @@ of the snippets by setting the "always_use_first_snippet" option to 1.
 If you have VimL only (vim without python support) your best option is using
 garbas/vim-snipmate and cope with the minor bugs found in the engine.
 
+
+Policies / for contributors
+===========================
+Some snippets are useful for almost all languages, so let's try to have the same
+triggers for them:
+
+```
+if : if without else
+ife: if $1 else $2
+eif : else if ($1) { .. }
+el  : else ..
+```
+
+If you're not satisfied with these defaults, open a ticket that we implement
+aliasing. Then you can remap "else" to "el" or the like.
+
+
+Don't add stupid placeholder default texts like
+```
+if (${1:condition}){
+  ${2:some code here}
+}
+```
+instead use:
+
+```
+if (${1}){
+  ${2}
+}
+```
+
+Exception: Functions which are used less often, such as Vim's matchall(), matchstr()
+functions which case hints may be helpful to remember order. In the VimL case
+get vim-dev plugin which has function completion
+
+Thus for conditions (while, if ..) and block bodies just use ${N} - Thanks
+
+Open questions:
+What about one line if ee then .. else .. vs if \n .. then \n ... \n else \n .. ?
+What about wh(ile), which trigger?
+Discuss at: https://github.com/honza/vim-snippets/issues/230
+
+
 Related repositories
 ====================
 We also encourage people to maintain sets of snippets for particular use cases
@@ -61,6 +104,13 @@ so that all users can benefit from them.  People can list their snippet reposito
      * https://github.com/bonsaiben/bootstrap-snippets (snippets for Twitter Bootstrap markup, in HTML and Haml)
 
 Installation using VAM: "github:rbonvall/snipmate-snippets-bib"
+
+
+Future - ideas - examples
+=========================
+[overview snippet engines](http://vim-wiki.mawercer.de/wiki/topic/text-snippets-skeletons-templates.html)
+If you have ideas you can add them to that list of "snippet engine features by example".
+
 
 Historical notes
 ================
@@ -80,19 +130,23 @@ add snippets/ruby-1.9.snippets (1.9 only)
 
 then configure github.com/garbas/vim-snipmate this way:
 
-    let g:snipMate = {}
-    let g:snipMate.scope_aliases = {}
-    let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rails,ruby-1.9'
+
+```vim
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rails,ruby-1.9'
+```
 
 or github.com/MarcWeber/UltiSnips this way:
 
 
-    let g:UltiSnips = {}
+```vim
+let g:UltiSnips = {}
 
-    let g:UltiSnips.snipmate_ft_filter = {
-                \ 'default' : {'filetypes': ["FILETYPE"] },
-                \ 'ruby'    : {'filetypes': ["ruby", "ruby-rails", "ruby-1.9"] },
-
+let g:UltiSnips.snipmate_ft_filter = {
+            \ 'default' : {'filetypes': ["FILETYPE"] },
+            \ 'ruby'    : {'filetypes': ["ruby", "ruby-rails", "ruby-1.9"] },
+```
 
 If it happens that you work on a project requiring ruby-1.8 snippets instead,
 consider using vim-addon-local-vimrc and override the filetypes.
@@ -123,6 +177,8 @@ vim-snippets is not like the "linux kernel".
 * Ruby - [taq](http://github.com/taq)
 * PHP - [chrisyue](http://github.com/chrisyue)
 * Scala - [gorodinskiy](https://github.com/gorodinskiy)
+* Falcon - [steveno](https://github.com/steveno)
+* Elixir - [iurifq](https://github.com/iurifq)
 
 Contributing notes
 ------------------
